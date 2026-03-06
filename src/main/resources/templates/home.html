@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Habit Tracker</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <h1>Habit Tracker</h1>
+
+    <form action="/add" method="post">
+        <input type="text" name="name" placeholder="New Habit" required>
+        <button type="submit">Add</button>
+    </form>
+
+    <table>
+        <tr>
+            <th>Habit</th>
+            <th>Streak</th>
+            <th>Action</th>
+        </tr>
+        <tr th:each="habit : ${habits}">
+            <td th:text="${habit.name}"></td>
+            <td th:text="${habit.streak}"></td>
+            <td>
+                <a th:href="@{/delete/{id}(id=${habit.id})}">Delete</a>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
